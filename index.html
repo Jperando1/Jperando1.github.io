@@ -14,7 +14,6 @@ class SimpleGame extends netplayjs.Game {
     // Initialize our player positions.
     this.aPos = { x: 100, y: 150 };
     this.bPos = { x: 500, y: 150 };
-    this.cPos = { x: 300, y: 150 };
   }
 
   // The tick function takes a map of Player -> Input and
@@ -24,17 +23,15 @@ class SimpleGame extends netplayjs.Game {
     for (const [player, input] of playerInputs.entries()) {
       // Generate player velocity from input keys.
       const vel = input.arrowKeys();
-
+      const atk = input.a();
       // Apply the velocity to the appropriate player.
       if (player.getID() == 0) {
         this.aPos.x += vel.x * 5;
         this.aPos.y -= vel.y * 5;
+        this.aPos.x += atk * 50;
       } else if (player.getID() == 1) {
         this.bPos.x += vel.x * 5;
         this.bPos.y -= vel.y * 5;
-      } else if (player.getID() == 2) {
-        this.cPos.x += vel.x * 5;
-        this.cPos.y -= vel.y * 5;
       }
     }
   }
@@ -58,14 +55,12 @@ class SimpleGame extends netplayjs.Game {
     ctx.fillRect(this.aPos.x - 5, this.aPos.y - 5, 10, 10);
     ctx.fillStyle = "blue";
     ctx.fillRect(this.bPos.x - 5, this.bPos.y - 5, 10, 10);
-    ctx.fillStyle = "green";
-    ctx.fillRect(this.cPos.x - 5, this.cPos.y - 5, 10, 10);
   }
 }
 
 SimpleGame.timestep = 1000 / 60; // Our game runs at 60 FPS
 SimpleGame.canvasSize = { width: 600, height: 300 };
-SimpleGame.numPlayers = 3; // We have 3 players
+// SimpleGame.numPlayers = 3; // This feature is currently not implemented in the server library
 
 // Because our game can be easily rewound, we will use Rollback netcode
 // If your game cannot be rewound, you should use LockstepWrapper instead.
