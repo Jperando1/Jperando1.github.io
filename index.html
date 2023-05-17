@@ -65,7 +65,7 @@ class SimpleGame extends netplayjs.Game {
 
 SimpleGame.timestep = 1000 / 60; // Our game runs at 60 FPS
 SimpleGame.canvasSize = { width: 600, height: 300 };
-SimpleGame.playerCount = 3; // We have 3 players
+SimpleGame.numPlayers = 3; // We have 3 players
 
 // Because our game can be easily rewound, we will use Rollback netcode
 // If your game cannot be rewound, you should use LockstepWrapper instead.
