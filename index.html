@@ -28,7 +28,7 @@ class SimpleGame extends netplayjs.Game {
       if (player.getID() == 0) {
         this.aPos.x += vel.x * 5;
         this.aPos.y -= vel.y * 5;
-        this.aPos.x += input.keysHeld.x * 50;
+        this.aPos.x += input.keysHeld.x;
       } else if (player.getID() == 1) {
         this.bPos.x += vel.x * 5;
         this.bPos.y -= vel.y * 5;
