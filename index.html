@@ -23,12 +23,12 @@ class SimpleGame extends netplayjs.Game {
     for (const [player, input] of playerInputs.entries()) {
       // Generate player velocity from input keys.
       const vel = input.arrowKeys();
-      const atk = input.a();
+      const atk = input.keysHeld.x;
       // Apply the velocity to the appropriate player.
       if (player.getID() == 0) {
         this.aPos.x += vel.x * 5;
         this.aPos.y -= vel.y * 5;
-        this.aPos.x += atk * 50;
+        this.aPos.x += input.keysHeld.x * 50;
       } else if (player.getID() == 1) {
         this.bPos.x += vel.x * 5;
         this.bPos.y -= vel.y * 5;
